@@ -16,4 +16,7 @@ class User < ApplicationRecord
   validates :surname_katakana, presence: true,
                                format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
   validates :birthday, presence: true
+
+  has_many :items
+  # has_many :purchases
 end
