@@ -1,11 +1,12 @@
-console.log("item_new.js connected");
-window.addEventListener('turbo:load', function () {
-  const price = document.getElementById("item-price")
-  if (!price) return;
-  const addTaxPrice = document.getElementById("add-tax-price")
-  const profit = document.getElementById("profit")
-  price.addEventListener('input', function () {
-    const inputValue = parseInt(price.value)
+const priceCalc = () => {
+  const priceInput = document.getElementById("item-price");
+  if (!priceInput) return;
+
+  const addTaxPrice = document.getElementById("add-tax-price");
+  const profit = document.getElementById("profit");
+
+  priceInput.addEventListener('input', () => {
+    const inputValue = parseInt(priceInput.value);
     if (!isNaN(inputValue)) {
       const tax = Math.floor(inputValue * 0.1);
       const netProfit = inputValue - tax;
@@ -16,4 +17,7 @@ window.addEventListener('turbo:load', function () {
       profit.textContent = '';
     }
   });
-})
+};
+
+window.addEventListener("turbo:load", priceCalc);
+window.addEventListener("turbo:render", priceCalc);
