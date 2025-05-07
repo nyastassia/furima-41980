@@ -131,7 +131,7 @@
       <% if @items.any? %>
        <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to item_path(item) do %>
+        <%= link_to "#" do %>
         <div class='item-img-content'>
           <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" %>
           <%# 商品が売れていればsold outを表示しましょう %>
@@ -159,8 +159,6 @@
       </li>
       <% end %>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
       <% else %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -179,8 +177,7 @@
         </div>
       </li>
         <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+        
       <% end %>
     </ul>
   </div>
