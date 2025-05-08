@@ -8,11 +8,11 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <% if @item.sold_out? %>
-      <div class="sold-out">
-        <span>Sold Out!!</span>
-      </div>
-      <% end %>
+      <%# if @item.sold_out? %>
+      <%#< div class="sold-out"> %>
+       <%# <span>Sold Out!!</span>%>
+     <%# </div>%>
+      <%# end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -23,15 +23,15 @@
       </span>
     </div>
 
-    <% if user_signed_in? && current_user == @item.user && !@item.sold_out? %>
+    <% if user_signed_in? %>
+    <% if current_user == @item.user %>
     <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
-    <% end %>
-
-    <% if user_signed_in? && current_user != @item.user && !@item.sold_out? %>
+    <% else %>
     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-    <%end%>
+    <% end %>
+    <% end %>
 
     <div class="item-explain-box">
       <span><%= @item.item_name %></span>
