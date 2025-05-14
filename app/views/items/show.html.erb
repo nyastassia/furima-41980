@@ -23,14 +23,12 @@
       </span>
     </div>
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && !@item.sold_out? %>
     <% if current_user == @item.user %>
-      <% unless @item.sold_out? %>
     <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
-    <% end %>
     <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
-    <% elsif !@item.sold_out? %>
+    <% else %>
     <%= link_to "購入画面に進む", new_item_purchase_path(@item) ,class:"item-red-btn"%>
     <% end %>
     <% end %>
