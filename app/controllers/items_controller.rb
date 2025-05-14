@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_owner_or_sold_out, only: [:edit, :update, :destroy]
+
   def index
     @items = Item.order(created_at: :desc)
   end
@@ -54,5 +56,11 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def redirect_if_not_owner_or_sold_out
+    return unless @item.sold_out? || current_user != @item.user
+
+    redirect_to root_path, alert: '不正なアクセスです。'
   end
 end

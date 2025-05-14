@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
-  # has_one :purchase
+  has_one :purchase
   has_one_attached :image
   belongs_to :category
   belongs_to :condition
@@ -28,7 +28,7 @@ class Item < ApplicationRecord
   validates :category_id, :condition_id, :ship_cost_id, :prefecture_id, :delivery_time_id,
             numericality: { other_than: 1, message: "can't be blank" }
 
-  # def sold_out?
-  # false
-  # end
+  def sold_out?
+    purchase.present?
+  end
 end
