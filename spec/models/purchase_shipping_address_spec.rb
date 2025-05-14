@@ -12,18 +12,6 @@ RSpec.describe PurchaseShippingAddress, type: :model do
       expect(@purchase_shipping_address).to be_valid
     end
 
-    it 'user_idが空では保存できない' do
-      @purchase_shipping_address.user_id = nil
-      @purchase_shipping_address.valid?
-      expect(@purchase_shipping_address.errors.full_messages).to include("User can't be blank")
-    end
-
-    it 'item_idが空では保存できない' do
-      @purchase_shipping_address.item_id = nil
-      @purchase_shipping_address.valid?
-      expect(@purchase_shipping_address.errors.full_messages).to include("Item can't be blank")
-    end
-
     it 'buildingが空でも保存できる' do
       @purchase_shipping_address.building = ''
       expect(@purchase_shipping_address).to be_valid
@@ -35,6 +23,17 @@ RSpec.describe PurchaseShippingAddress, type: :model do
       @purchase_shipping_address.token = nil
       @purchase_shipping_address.valid?
       expect(@purchase_shipping_address.errors.full_messages).to include("Token can't be blank")
+    end
+    it 'user_idが空では保存できない' do
+      @purchase_shipping_address.user_id = nil
+      @purchase_shipping_address.valid?
+      expect(@purchase_shipping_address.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'item_idが空では保存できない' do
+      @purchase_shipping_address.item_id = nil
+      @purchase_shipping_address.valid?
+      expect(@purchase_shipping_address.errors.full_messages).to include("Item can't be blank")
     end
     it 'postal_codeが空では保存できない' do
       @purchase_shipping_address.postal_code = ''
