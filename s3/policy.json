@@ -1,0 +1,15 @@
+aws s3api put-bucket-policy --bucket furimartpics --policy "$(cat << EOF{"Version": "2012-10-17","Id": "Policy1544152951996",
+"Statement": [
+  {
+    "Sid": "Stmt1544152948221",
+    "Effect": "Allow",
+    "Principal": {
+      "AWS": "arn:aws:iam::859670285262:user/IAM_Nastassia"
+    },
+    "Action": "s3:*",
+    "Resource": "arn:aws:s3:::furimartpics"
+  }
+]
+}
+EOF
+)"
