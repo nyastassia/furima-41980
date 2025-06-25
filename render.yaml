@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: furima-41980
+    env: ruby
+    buildCommand: "bundle install && bundle exec rails assets:precompile"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+    autoDeploy: true
+
+jobs:
+  - name: db-migrate
+    type: manual
+    env: ruby
+    startCommand: "bundle exec rails db:migrate"
