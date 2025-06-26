@@ -11,8 +11,8 @@ services:
         sync: false
     autoDeploy: true
 
-jobs:
-  - name: db-migrate
-    type: manual
-    env: ruby
-    startCommand: "bundle exec rails db:migrate"
+# jobs:
+#   - name: db-migrate
+#     type: manual
+#     env: ruby
+#     startCommand: "bundle exec rails db:migrate"
